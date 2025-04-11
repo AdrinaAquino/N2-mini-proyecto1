@@ -1,27 +1,16 @@
-import React, { useEffect, useState } from 'react'
-import axios from 'axios';
+import useData from '../hooks/useData';
 
 export default function Cards() {
-    const [habitaciones, sethabitaciones] = useState([])
-
-    async function getHabitacion() {
-        const { data } = await axios.get("stays.json")
-
-        sethabitaciones(data)
-    }
-    useEffect(() => {
-        getHabitacion()
-    }, [])
-
+    const { tasks} = useData("stays.json")
+    
+    const habitaciones = tasks
 
     return (
         <>
-            {habitaciones.map((habitacion) => {
-                console.log(habitacion.type)
-
-                let contenido
+            {habitaciones?.map((habitacion,id) => {
+                let contenido;
                 if (habitacion.superHost === true && habitacion.beds !== null) {
-                    contenido = <div className="w-95 flex flex-col items-center my-3" >
+                    contenido = <div className="w-95 flex flex-col items-center my-3" key={id}>
                         <div className=" w-90 h-70 rounded-3xl overflow-hidden">
                             <img
                                 src={habitacion.photo}
@@ -46,7 +35,7 @@ export default function Cards() {
 
                 } else if (habitacion.superHost === true && habitacion.beds === null) {
 
-                    contenido = <div className="w-95 flex flex-col items-center my-3" >
+                    contenido = <div className="w-95 flex flex-col items-center my-3" key={id}>
                         <div className=" w-90 h-70 rounded-3xl overflow-hidden">
                             <img
                                 src={habitacion.photo}
@@ -71,7 +60,7 @@ export default function Cards() {
 
                 } else if (habitacion.beds === null) {
 
-                    contenido = <div className="w-95 flex flex-col items-center my-3" >
+                    contenido = <div className="w-95 flex flex-col items-center my-3" key={id}>
                         <div className=" w-90 h-70 rounded-3xl overflow-hidden">
                             <img
                                 src={habitacion.photo}
@@ -94,7 +83,7 @@ export default function Cards() {
                     </div>
 
                 } else if (habitacion.null !== null) {
-                    contenido = <div className="w-95 flex flex-col items-center my-3" >
+                    contenido = <div className="w-95 flex flex-col items-center my-3" key={id}>
                         <div className=" w-90 h-70 rounded-3xl overflow-hidden">
                             <img
                                 src={habitacion.photo}
@@ -116,7 +105,7 @@ export default function Cards() {
                         </div>
                     </div>
                 }
-                return { contenido }
+                return [contenido]                
             })}
         </>
     )
