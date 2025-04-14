@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import Modal from './Modal'
 
-export default function NavBar() {
+export default function NavBar({setFilteredTasks}) {
   const [open, setOpen] = useState(false)
   function toggleModal() {
       setOpen(!open)
@@ -10,7 +10,9 @@ export default function NavBar() {
     <>
     {
       open && <Modal 
-      toggleModal={toggleModal}/>
+      toggleModal={toggleModal}
+      setFilteredTasks={setFilteredTasks}
+      />
 
     }
     <nav className="md:flex justify-between items-center">

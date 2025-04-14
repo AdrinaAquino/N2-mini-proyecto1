@@ -1,12 +1,14 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import BotonMasMenos from './BotonMasMenos'
 import ListaLugar from './ListaLugar'
+import Search from './Search'
 
-export default function Modal({ toggleModal }) {
+export default function Modal({ toggleModal , setFilteredTasks}) {
   const [location, setLocation] = useState("")
   const handleChange = (e) => { setLocation(e.target.value) }
   const [guests, setGuests] = useState("")
   const handleNumber = (e) => { setGuests(e.target.value) }
+  
   function clickFuera(e) {
     if (e.target.role === "modal") {
       toggleModal()
@@ -46,16 +48,11 @@ export default function Modal({ toggleModal }) {
               onChange={handleNumber} onClick={abrirBotones} className="shadow rounded-sm px-2" />
           </div>
           {/* <!-- SEARCH --> */}
-          <div
-            className=" absolute top-122 right-1/2 translate-1/2 text-white md:h-full md:static md:translate-0 md:flex md:justify-center md:items-center md:text-white md:w-1/3">
-            <button className="flex px-5 py-2 border rounded-3xl bg-[#eb5757] cursor-pointer hover:bg-rose-700"
-              id="search">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5"
-                stroke="white" className="size-6">
-                <path strokeLinecap="round" strokeLinejoin="round"
-                  d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
-              </svg>search</button>
-          </div>
+          <Search
+            location={location}
+            guests={guests}
+            setFilteredTasks={setFilteredTasks}
+          />
         </div>
 
         {/* <!-- lista --> */}

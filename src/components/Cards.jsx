@@ -1,13 +1,15 @@
-import useData from '../hooks/useData';
+import React from "react";
 
-export default function Cards() {
-    const { tasks} = useData("stays.json")
+export default function Cards({tasks}) {
     
-    const habitaciones = tasks
 
+    if (tasks.length === 0) {
+        console.log(tasks.length)
+        return <p className="text-center text-gray-500 mt-8">No hay resultados disponibles.</p>;
+      }
     return (
         <>
-            {habitaciones?.map((habitacion,id) => {
+            {tasks.map((habitacion,id) => {
                 let contenido;
                 if (habitacion.superHost === true && habitacion.beds !== null) {
                     contenido = <div className="w-95 flex flex-col items-center my-3" key={id}>
