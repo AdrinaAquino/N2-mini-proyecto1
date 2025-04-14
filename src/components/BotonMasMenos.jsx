@@ -1,19 +1,20 @@
 import React, { useEffect, useState } from 'react'
 
 export default function BotonMasMenos({ setGuests }) {
-    const [contadorGuests, setContadorGuest] = useState(0)
-    const [contadorGuests2, setContadorGuest2] = useState(0)
-    const restar = () => { contadorGuests > 0 ? setContadorGuest(contadorGuests - 1) && setContadorGuest2(contadorGuests2 - 1) : 0 }
-    const sumar = () => { contadorGuests >= 0 ? setContadorGuest(contadorGuests + 1) && setContadorGuest2(contadorGuests2 + 1) : 0 }
-    const restar2 = () => { contadorGuests2 > 0 ?  setContadorGuest2(contadorGuests2 - 1) : 0 }
-    const sumar2 = () => { contadorGuests2 >= 0 ?  setContadorGuest2(contadorGuests2 + 1) : 0 }
+    const [contadorGuests, setContadorGuests] = useState(0)
+    const [contadorGuests2, setContadorGuests2] = useState(0)
+    const restar = () => { contadorGuests > 0 ? setContadorGuests(contadorGuests - 1) && setContadorGuests2(contadorGuests2 - 1) : 0 }
+    const sumar = () => { contadorGuests >= 0 ? setContadorGuests(contadorGuests + 1) && setContadorGuests2(contadorGuests2 + 1) : 0 }
+    const restar2 = () => { contadorGuests2 > 0 ?  setContadorGuests2(contadorGuests2 - 1) : 0 }
+    const sumar2 = () => { contadorGuests2 >= 0 ?  setContadorGuests2(contadorGuests2 + 1) : 0 }
+    
     useEffect(()=>{
         setGuests(contadorGuests+contadorGuests2)
     },)
-    
+ 
     return (
         <>
-            <div className="h-70 hidden md:h-50" id="mas-menos">
+            <div className="h-70  md:h-50" id="mas-menos">
                 <div className="flex flex-col items-start py-3 m-4 md:m-2 md:py-0 px-3 md:items-center">
                     <span className="font-semibold">Adult</span>
                     <span className="text-gray-400 mb-4">ages 18 or above</span>
