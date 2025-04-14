@@ -5,7 +5,7 @@ export default function Cards({tasks}) {
 
     if (tasks.length === 0) {
         console.log(tasks.length)
-        return <p className="text-center text-gray-500 mt-8">No hay resultados disponibles.</p>;
+        return <p className="text-center mt-8">No hay resultados.</p>;
       }
     return (
         <>

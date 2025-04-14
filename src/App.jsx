@@ -10,20 +10,20 @@ export default function App() {
   const tasksToShow = filteredTasks.length > 0 ? filteredTasks : tasks;
   return (
     <div>
-      <NavBar 
-      setFilteredTasks={setFilteredTasks}
+      <NavBar
+        setFilteredTasks={setFilteredTasks}
       />
 
       <main id="modal" className="h-screen">
 
         <section className="w-5/6 m-auto ">
-          <Contador 
-          tasks={tasksToShow}/>
+          <Contador
+            tasks={tasksToShow} />
           <article className="w-full flex flex-wrap justify-center" id="principal ">
-          {tasksToShow.length > 0 ? 
+            {tasksToShow.length > 0 ?
               <Cards tasks={tasksToShow} />
-            :
-<p className="text-center text-gray-500 mt-8">No hay resultados disponibles.</p>
+              :
+              <p className="text-center mt-8">No hay resultados.</p>
             }
           </article>
         </section>
